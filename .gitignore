@@ -1,0 +1,16 @@
+# Raw Zenodo data - too large for GitHub
+data/
+
+# R temporary files
+.Rhistory
+.RData
+.Rproj.user/
+
+# Python
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
