@@ -117,19 +117,12 @@ The real-world screening data used in Stage 3 is sourced from:
 > for automated screening in systematic reviews. *Systematic Reviews*, 9(1), 273.
 > https://doi.org/10.1186/s13643-020-01521-4
 
-The dataset is publicly available via Zenodo and contains screening outputs structured as follows:
+The dataset is publicly available on Zenodo:
+https://zenodo.org/records/18164103
 
-data/
-├── review_id=0/
-│   ├── run_id=1/
-│   │   └── [parquet file]
-│   ├── run_id=2/
-│   └── ... (100 runs per review)
-├── review_id=1/
-└── ... (26 reviews total)
 
 The dataset is not included in this repository due to its size. 
-Please download it directly from Zenodo using the link above and place 
+Please download it directly from the Zenodo link above and place 
 it in a local `data/` folder in the root of this repository before 
 running the PIK cluster notebook.
 
