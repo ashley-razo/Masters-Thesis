@@ -69,6 +69,7 @@ install.packages(c("BiasedUrn", "ggplot2", "dplyr", "parallel"))
 | `bayesian_stopping_experiments.ipynb` | Jupyter notebook containing the Python implementation of the Bayesian stopping rule before scaling to the PIK cluster |
 | `results/summary_results.csv` | Aggregated summary statistics across all reviews and confidence levels |
 | `results/results_review_X.csv` | Per-run results for each of the ten systematic reviews (reviews 3--12) |
+| `results/results_analysis.ipynb` | Combined analysis notebook aggregating all per-review CSV files into a single dataset and generating all figures used in the thesis (Figures 6, 7, and 8) |
 
 ### Result Files
 
