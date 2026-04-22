@@ -85,8 +85,8 @@ run_one_sim_parallel <- function(N, K_true, omega_true,
   }
   
   list(
-    recall_at_stop = if (!is.na(stop_n)) k_cum[stop_n] / K_true else NA_real_,
-    work_saved     = if (!is.na(stop_n)) 1 - stop_n / N       else 0
+    recall_at_stop = if (!is.na(stop_n)) k_cum[stop_n] / K_true else 1.0,
+    work_saved     = if (!is.na(stop_n)) 1 - stop_n / N         else 0
   )
 }
 
@@ -235,13 +235,10 @@ p1 <- ggplot(summary_df,
   geom_tile(colour = "white", linewidth = 0.6) +
   geom_text(aes(label = sprintf("%.3f", median_recall)),
             size = 3.2, colour = "black") +
-  scale_fill_gradient2(
-    low      = "#d73027",
-    mid      = "#ffffbf",
-    high     = "#1a9850",
-    midpoint = 0.95,
-    limits   = c(0.88, 1.00),
-    name     = "Median\nRecall"
+  scale_fill_gradientn(
+    colours = c("#deebf7", "#9ecae1", "#4292c6", "#2171b5", "#084594"),
+    limits = c(0.90, 1.00),
+    name = "Median\nRecall"
   ) +
   labs(
     title = "Median Recall at Stopping across Configurations",
@@ -260,20 +257,26 @@ ggsave("plot_mc_recall_heatmap.png", p1,
        width = 10, height = 4, dpi = 150)
 cat("Saved: plot_mc_recall_heatmap.png\n")
 
-# --- Plot 2: Heatmap of median work saved ---
+#Plot 2: Heatmap of median work saved
+
+# Flag cells where stopping never triggered as NA for grey rendering
+summary_df <- summary_df %>%
+  mutate(fill_work_saved = ifelse(median_work_saved == 0 &
+                                    grepl("N=5000", config_label) &
+                                    grepl("τ=0.99", tau_gamma_label),
+                                  NA, median_work_saved))
+
 p2 <- ggplot(summary_df,
              aes(x = tau_gamma_label,
                  y = config_label,
-                 fill = median_work_saved)) +
+                 fill = fill_work_saved)) +
   geom_tile(colour = "white", linewidth = 0.6) +
   geom_text(aes(label = sprintf("%.3f", median_work_saved)),
             size = 3.2, colour = "black") +
-  scale_fill_gradient2(
-    low      = "#d73027",
-    mid      = "#ffffbf",
-    high     = "#1a9850",
-    midpoint = 0.20,
-    limits   = c(0.00, 0.55),
+  scale_fill_gradientn(
+    colours = c("#deebf7", "#9ecae1", "#4292c6", "#2171b5", "#084594"),
+    limits   = c(0.00, 0.60),
+    na.value = "grey60",
     name     = "Median\nWork Saved"
   ) +
   labs(
@@ -283,9 +286,9 @@ p2 <- ggplot(summary_df,
   ) +
   theme_minimal(base_size = 11) +
   theme(
-    axis.text.x    = element_text(size = 9),
-    axis.text.y    = element_text(size = 9),
-    plot.title     = element_text(face = "bold", hjust = 0.5),
+    axis.text.x     = element_text(size = 9),
+    axis.text.y     = element_text(size = 9),
+    plot.title      = element_text(face = "bold", hjust = 0.5),
     legend.position = "right"
   )
 
@@ -299,12 +302,13 @@ p3 <- ggplot(summary_df,
                  y = config_label,
                  fill = miss_rate)) +
   geom_tile(colour = "white", linewidth = 0.6) +
-  geom_text(aes(label = sprintf("%.3f", miss_rate)),
+  geom_text(aes(label = sprintf("%.2f", miss_rate)),
             size = 3.2, colour = "black") +
   scale_fill_gradientn(
-    colours = c("#1a9850", "#ffffbf", "#d73027", "#808080"),
-    values  = scales::rescale(c(0, 0.05, 0.15, 1.0)),
+    colours = c("#deebf7", "#9ecae1", "#4292c6", "#2171b5", "#084594"),
+    values  = scales::rescale(c(0, 0.05, 0.15, 0.99)),
     limits  = c(0, 1),
+    na.value = "#808080",
     name    = "Miss\nRate"
   ) +
   labs(
