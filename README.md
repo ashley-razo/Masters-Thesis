@@ -10,8 +10,8 @@
 
 This repository contains all code, data, and outputs associated with the thesis:
 
-> *When to Stop: Bayesian Updating for Robust Stopping Rules in 
-> Machine Learning-Assisted Systematic Review Screening*
+> *Bayesian Stopping Rules for Machine Learning-
+> Assisted Systematic Review Screening*
 
 The thesis develops and evaluates the first Bayesian stopping rule for 
 machine learning-assisted systematic review screening. The method models 
@@ -140,7 +140,7 @@ and tables without re-running the full pipeline.
 
 ## Thesis
 
-The final submitted thesis PDF is available in `/thesis/Thesis_Draft.pdf`.
+The final submitted thesis PDF is available in `/thesis/Razo_Ashley_Master_Thesis.pdf`.
 
 ---
 
@@ -148,8 +148,8 @@ The final submitted thesis PDF is available in `/thesis/Thesis_Draft.pdf`.
 
 If you use or build on this work, please cite:
 
-Razo, A. (2026). When to Stop: Bayesian Updating for Robust Stopping Rules
-in Machine Learning-Assisted Systematic Review Screening.
+Razo, A. (2026). Bayesian Stopping Rules for Machine
+Learning-Assisted Systematic Review Screening.
 Master's Thesis, Hertie School.
 
 ---
