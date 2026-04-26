@@ -100,7 +100,6 @@ All figures used in the thesis are available in their respective directories:
 - `heatmap_recall.png` — Median recall at stopping across configurations
 - `heatmap_worksaved.png` — Median work saved across configurations  
 - `heatmap_missrate.png` — Miss rate across configurations
-- `plot_for_change_in_omega.png` — Recall under four bias scenarios
 - `plot_decay_comparison.png` — Conservative adjustment sensitivity analysis
 
 **From real-world evaluation (`/pik-cluster/results`):**
